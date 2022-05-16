@@ -45,14 +45,28 @@ public class Display extends AppCompatActivity {
 
         calcWage(EmployeeType, EmployeeHours, txtWage);
 
-
     }
 
     //Method
     public void calcWage(String employeeType, Double employeeHours, TextView txtWage) {
         Double totalWage = 0.0;
+        //overtime solution
         if (employeeHours > 8.0) {
-        } else {
+            if (employeeType.equals("Full-time")){
+                totalWage = 800 + (115 * (employeeHours - 8.0));
+                txtWage.setText("Total Wage with Overtime: ₱" + String.valueOf(totalWage));
+            }
+            else if (employeeType.equals("Part-time")){
+                totalWage = 600 + (90 * (employeeHours -8.0));
+                txtWage.setText("Total Wage with Overtime: ₱" + String.valueOf(totalWage));
+            }
+            if (employeeType.equals("Probationary")){
+                totalWage = 720 + (100 * (employeeHours - 8.0));
+                txtWage.setText("Total Wage with Overtime: ₱" + String.valueOf(totalWage));
+            }
+        }
+        //Wage solution w/out overtime
+        else {
             if (employeeType.equals("Full-time")) {
                 totalWage = employeeHours * 100;
                 txtWage.setText("Total Wage: ₱" + String.valueOf(totalWage));
